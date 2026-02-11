@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Velvet Night — Untukmu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="particleCanvas"></canvas>
+
+  <div class="card">
+    <div class="head">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="#ff9db3">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <div class="title">
+        <h1>untuk lala</h1>
+        <p>dari rasa yang terpendam</p>
+      </div>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="prompt">Mauka dirimu yang indah itu untuk sekedar membaca puisi cinta dariku</div>
+      <div class="controls" id="controls">
+        <button class="btn yes" id="yes">Ya, dengan senang hati 💖</button>
+        <button class="btn no" id="no">Tidak sekarang</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="poem-overlay" id="poem">
+    <div class="poem-card">
+      <div class="poem-content">
+        <h2>for you, and only you</h2>
+        <p id="lyricText">
+          Kepadamu,<br>
+          ingin kutitipkan samudra.<br>
+          Bukan hanya luasnya,<br>
+          tetapi dalam yang gelap dan tak tersentuh,<br>
+          tempat rahasia paling sunyi berani berbisik.<br>
+          Di sana, namamu tenggelam—<br>
+          namun justru abadi...<br><br>
+          Dan langit…<br>
+          ah, langit selalu cemburu padamu.<br>
+          Sebab birunya tak pernah sebiru tatapmu,<br>
+          senjanya tak pernah sehangat senyummu,<br>
+          dan hujannya tak pernah sedalam air mataku<br>
+          saat membayangkan kehilanganmu...<br>
+          Jika kelak dunia runtuh,<br>
+          jika laut mengering<br>
+          dan bintang-bintang gugur tanpa suara,<br>
+          biarlah satu hal tetap utuh,<br>
+          rasaku padamu...,<br>
+          Karena aku mencintaimu<br>
+          bukan hanya sebesar samudra,<br>
+          bukan hanya setinggi angkasa,<br>
+          bukan hanya seluas langit...<br><br>
+          bahkan di antara miliar manusia yang berlalu,<br>
+          Hanya dirimu yang kutunggu....
+        </p>
+      </div>
+      <button class="close-btn" id="closePoem">Tutup & Matikan Lagu</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

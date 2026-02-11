@@ -1,0 +1,247 @@
+:root {
+  --bg: #0a0509;
+  --panel: #140c14;
+  --rose: #ff6b95;
+  --rose-light: #ff9db3;
+  --gold: #e2c07d;
+  --gold-light: #f0d9a4;
+  --muted: #e8dfe1;
+  --ease-romantic: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow: 0 30px 80px rgba(0,0,0,0.8);
+  --glow: 0 0 30px rgba(255,107,149,0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(1200px 600px at 50% 0%, rgba(255,107,149,0.05), transparent),
+    radial-gradient(1000px 800px at 50% 100%, rgba(226,192,125,0.03), transparent),
+    linear-gradient(180deg, var(--bg), #020102);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--muted);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card {
+  width: min(760px, 92%);
+  max-width: 720px;
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.03), rgba(0,0,0,0.05));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  z-index: 10;
+  transition: transform 0.8s var(--ease-romantic), opacity 0.8s ease;
+}
+
+.head {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2a0e1c, #4a1930);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.title h1 {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title p {
+  margin-top: 4px;
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+}
+
+.stage {
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 24px;
+  background: rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  height: 280px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.prompt {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  font-size: 18px;
+  color: rgba(255,255,255,0.95);
+  z-index: 2;
+}
+
+.controls {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  z-index: 3;
+}
+
+.btn {
+  padding: 16px 36px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.yes {
+  background: linear-gradient(135deg, var(--rose), #e91e63);
+  color: white;
+  box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+}
+
+.yes:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(233, 30, 99, 0.4);
+}
+
+.no {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+}
+
+.poem-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.0);
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+  transition: all 1.5s var(--ease-romantic);
+}
+
+.poem-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(5, 2, 8, 0.75);
+  backdrop-filter: blur(12px);
+}
+
+.poem-card {
+  width: min(600px, 85%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: linear-gradient(145deg, #1f0b18, #2d1020);
+  padding: 40px 30px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+  text-align: center;
+  transform: translateY(40px) scale(0.95);
+  opacity: 0;
+  transition: all 1.2s var(--ease-romantic);
+  scrollbar-width: none;
+}
+
+.poem-card::-webkit-scrollbar { display: none; }
+
+.poem-overlay.show .poem-card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.poem-content h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.poem-content p {
+  color: rgba(255,255,255,0.9);
+  font-size: 19px;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+
+.poem-content p span {
+  display: block;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(15px);
+  transition: opacity 1.2s ease, filter 1.2s ease, transform 1s var(--ease-romantic);
+}
+
+.poem-content p span.reveal {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.close-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .card { padding: 24px; }
+  .stage { height: 320px; }
+  .controls { flex-direction: column; gap: 16px; }
+  .btn { width: 100%; }
+}
